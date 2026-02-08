@@ -1,0 +1,68 @@
+{
+  "name": "Set-reminders-to-consultants",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 4
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "eb4015ec-c1a3-4a7b-933c-edb0fa8c3f2a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "command": "python3 /data/py_scripts/set-reminders.py"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "8dacad31-edec-4761-ac48-d1020d47fe9a",
+      "name": "Execute Command"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fb3f8e99-1d13-4723-8e2d-2c8d233dab82",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c734a952c754fd67961cdcffa7344d9d2c75202cc0c4be1fa69890e5c811b7b3"
+  },
+  "id": "LmEwLcYlnPgjtuFZ",
+  "tags": []
+}

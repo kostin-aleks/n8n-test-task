@@ -1,0 +1,99 @@
+{
+  "name": "Create-week-report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "29aa7f9e-ba07-432b-b1e5-5827172683e1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "command": "python3 /data/py_scripts/get-airtable-data.py"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "fcfb8529-4299-4b22-ab66-d0d5e23ce69a",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@company.biz",
+        "toEmail": "galdor@ukr.net",
+        "subject": "Week report",
+        "text": "=",
+        "html": "={{ $json.stdout }}"
+      },
+      "type": "n8n-nodes-base.mailgun",
+      "typeVersion": 1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "b2ebcf98-00f3-4450-a288-110b20a87a3c",
+      "name": "Mailgun",
+      "credentials": {
+        "mailgunApi": {
+          "id": "ybz5ZkQP1NcTn9WB",
+          "name": "Mailgun account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "Mailgun",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "96f3e6e5-0230-4078-a2f5-29feeb84034f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c734a952c754fd67961cdcffa7344d9d2c75202cc0c4be1fa69890e5c811b7b3"
+  },
+  "id": "3dV1aPznoB25SCvL",
+  "tags": []
+}
