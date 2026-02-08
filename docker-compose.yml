@@ -1,0 +1,22 @@
+# version: '3.8'
+
+services:
+  n8n-python:
+    # image: naskio/n8n-python:latest-debian # use this if intended to use heavy python packages
+    # image: naskio/n8n-python # alpine for light python packages
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "n8n start"
+    restart: always
+    container_name: n8n-python
+    environment:
+      GENERIC_TIMEZONE: Europe/Kyiv
+      TZ: Europe/Kyiv
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+      - ./local-files:/data/files # by default workdir == /data
+      - ./python_scripts:/data/py_scripts
+      - ./requirements.txt:/data/requirements.txt
