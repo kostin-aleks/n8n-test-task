@@ -85,11 +85,11 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "96f3e6e5-0230-4078-a2f5-29feeb84034f",
+  "versionId": "fb3f8e99-1d13-4723-8e2d-2c8d233dab82",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "c734a952c754fd67961cdcffa7344d9d2c75202cc0c4be1fa69890e5c811b7b3"
